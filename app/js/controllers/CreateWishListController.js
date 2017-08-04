@@ -7,6 +7,7 @@ tihcwlApp.controller('CreateWishListController',
     $scope.saveWishList = function(wishList){
       if ($scope.newWishListForm.$valid) {
         firebasePost.writeWishList(wishList)
+        firebasePost.writeBandList(wishList)
       }
     };
 

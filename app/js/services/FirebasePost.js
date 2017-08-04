@@ -5,18 +5,21 @@ tihcwlApp.factory('firebasePost', function(){
     writeWishList: function(bandArray) {
       //TODO: userId from facebook.
       //let userId = userId
-      database.ref('wishLists/126').update(
-        // id
+      database.ref('wishLists/128').update(
+        bandArray.map(band => ({ name: band.name}))
+      )
+    },
+    writeBandList: function(bandArray) {
+      //get band list of all bands
+      //possibly wrong here.
+      firebase.database().ref('/bandList').once('value')
+        .then(function(snapshot) {
+          var show =  snapshot.val()
+        });
+      //add logic that compares bandArray to enteries in the DB, if match inc by 1.
+      database.ref('bandList').update(
         bandArray.map(band => ({ name: band.name}))
       )
     }
-
-    // updateUpcomingShowToPastShow: function(show) {
-    //   var stripedDate = show.date.replace(/\//g, '')
-    //
-    //   database.ref('shows/' + stripedDate).update({
-    //     upcomingShow: false
-    //   });
-    // }
   }
 })
