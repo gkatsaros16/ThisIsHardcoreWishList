@@ -1,7 +1,7 @@
 'use strict';
 
 tihcwlApp.controller('WishListsController',
-  function HelloWorldController($scope) {
+  function WishListsController($scope) {
     $scope.helloWorld = 'Hello World :P I see you';
   }
 )

@@ -1,0 +1,13 @@
+<form name="newWishListForm">
+  <div ng-repeat="band in bands" class="form-group row">
+    <label for="example-text-input" class="col-xs-2 col-form-label">Band {{$index + 1}}</label>
+    <div class="col-xs-12">
+      <input class="form-control" type="text" required placeholder="Enter band" ng-model="band.name">
+    </div>
+  </div>
+  <button type="button" ng-click="addBand()" class="btn btn-secondary">Add Band</button>
+  <br>
+  <br>
+  <button type="submit" ng-click="saveWishList(bands)" ng-disabled="newEventForm.$invalid" class="btn btn-primary">Submit</button>
+  <button type="cancel" class="btn">Cancel</button>
+</form>
