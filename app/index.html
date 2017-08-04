@@ -14,7 +14,7 @@
 
   </head>
   <body>
-    
+
   <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -39,10 +39,10 @@
       <nav class="navbar navbar-inverse bg-inverse">
         <a class="navbar-brand" href="#/">TIHCWL</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="fb-login-button" style="float: right;" data-width="50" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
           <div class="navbar-nav nav-item-vertical-spacing">
-            <a class="nav-item nav-link active nav-item-horizontal-spacing" href="#/">Input<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link nav-item-horizontal-spacing" href="#/createShow">Input2</a>
-            <a class="nav-item nav-link nav-item-horizontal-spacing" href="#/allShows">Input3</a>
+            <a class="nav-item nav-link active nav-item-horizontal-spacing" href="#/wishLists">Wish Lists<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link nav-item-horizontal-spacing" href="#/createWishList">Your Wish List</a>
           </div>
         </div>
       </nav>
@@ -68,6 +68,7 @@
     <script src="/js/app.js"></script>
     <script src="/js/controllers/WishListsController.js"></script>
     <script src="/js/controllers/CreateWishListController.js"></script>
+    <script src="/js/controllers/TIHCWLController.js"></script>
     <script src="/js/services/FirebasePost.js"></script>
   </body>
 </html>

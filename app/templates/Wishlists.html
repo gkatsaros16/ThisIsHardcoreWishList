@@ -1,1 +1,11 @@
-{{ helloWorld }}
+<div>
+  <h1> Wish Lists </h1>
+  <div class="row">
+    <div ng-repeat="wishList in wishLists" class="col-xs-4">
+      Wish List {{ $index + 1 }}
+      <div ng-repeat="band in wishList">
+        {{ band.name }}
+      </div>
+    </div>
+  </div>
+</div>

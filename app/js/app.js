@@ -11,8 +11,13 @@ var tihcwlApp = angular.module('tihcwlApp', ['ngResource', 'ngRoute', 'firebase'
       templateUrl: 'templates/CreateWishList.html',
       controller: 'CreateWishListController'
     });
+    $routeProvider.when('/TIHCWL',
+    {
+      templateUrl: 'templates/TIHCWL.html',
+      controller: 'TIHCWLController'
+    });
     $routeProvider.otherwise(
     {
-      redirectTo: '/wishLists'
+      redirectTo: '/TIHCWL'
     });
   });

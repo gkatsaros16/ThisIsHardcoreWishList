@@ -3,9 +3,11 @@ tihcwlApp.factory('firebasePost', function(){
 
   return {
     writeWishList: function(bandArray) {
+      //TODO: userId from facebook.
+      //let userId = userId
       database.ref('wishLists/').set({
-        // id 
-        wishList: bandArray.map(band => ({ name: band.name}))
+        // id
+        '131': bandArray.map(band => ({ name: band.name}))
       })
     },
 

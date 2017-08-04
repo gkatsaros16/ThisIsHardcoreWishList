@@ -1,7 +1,9 @@
 'use strict';
 
 tihcwlApp.controller('WishListsController',
-  function WishListsController($scope) {
-    $scope.helloWorld = 'Hello World :P I see you';
+  function WishListsController($scope, $firebaseArray) {
+    let wishListRef = firebase.database().ref().child("wishLists");
+    let allWishLists = $firebaseArray(wishListRef);
+    $scope.wishLists = allWishLists;
   }
 )
