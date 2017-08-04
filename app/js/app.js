@@ -3,8 +3,8 @@ var tihcwlApp = angular.module('tihcwlApp', ['ngResource', 'ngRoute', 'angular.f
   .config(function($routeProvider){
     $routeProvider.when('/wishlists',
     {
-      templateUrl: 'templates/Wishlists.html',
-      controller: 'WishlistsController'
+      templateUrl: 'templates/WishLists.html',
+      controller: 'WishListsController'
     });
     $routeProvider.otherwise(
     {
