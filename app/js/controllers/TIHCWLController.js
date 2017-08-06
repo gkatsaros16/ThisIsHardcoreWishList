@@ -1,7 +1,9 @@
 'use strict';
 
 tihcwlApp.controller('TIHCWLController',
-  function TIHCWLController($scope) {
-    $scope.helloWorld = "hello world"
+  function TIHCWLController($scope, firebaseGet, $firebaseArray) {
+    let bandListRef = firebaseGet.getBandList();
+    let bandList = $firebaseArray(bandListRef);
+    $scope.bandList = bandList;
   }
 )

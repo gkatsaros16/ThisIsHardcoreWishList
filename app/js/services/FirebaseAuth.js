@@ -1,15 +1,17 @@
 tihcwlApp.factory('firebaseAuth', function(){
   // var userId = firebase.auth().currentUser.uid;
   return {
-    isLoggedIn: function() {
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    },
+    // isLoggedIn: function($scope) {
+    //   firebase.auth().onAuthStateChanged(function(user) {
+    //       if (user) {
+    //           $scope.user.authenticated =true;
+    //           $scope.$apply()
+    //       } else {
+    //           $scope.user.authenticated =false;
+    //           $scope.$apply()
+    //       }
+    //   });
+    // },
 
     loginWithFacebook: function() {
       var provider = new firebase.auth.FacebookAuthProvider();
@@ -19,7 +21,8 @@ tihcwlApp.factory('firebaseAuth', function(){
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-        // ...
+
+
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
