@@ -3,9 +3,8 @@ tihcwlApp.factory('firebasePost', function(){
 
   return {
     writeWishList: function(bandArray) {
-      //TODO: userId from facebook.
-      //let userId = userId
-      database.ref('wishLists/128').update(
+      let userId = firebase.auth().currentUser.uid;
+      database.ref('wishLists/' + userId).update(
         bandArray.map(band => ({ name: band.name}))
       )
     },
