@@ -1,21 +1,40 @@
 <form name="newWishListForm">
-  <div ng-repeat="band in bands" class="form-group row">
-    <label for="band_{{ $index + 1 }}" class="col-xs-2 col-form-label">Band {{$index + 1}}</label>
-    <div class="col-xs-12">
-      <input class="form-control" type="text" required placeholder="Enter band" ng-model="band.name" id="band_{{ $index + 1}}">
+  <div class="row">
+    <div class="col-xs-6">
+      <div ng-repeat="band in bands" class="form-group">
+        <label for="band_{{ $index + 1 }}" class="col-form-label">
+          <p>Band {{$index + 1}}:</p>
+        </label>
+        <div>
+          <input class="form-control" type="text" required placeholder="Enter band" ng-model="band.name" id="band_{{ $index + 1}}">
+        </div>
+      </div>
+      <button type="button" ng-click="addBand()" class="btn btn-secondary">Add Band</button>
+      <br>
+      <br>
+      <button type="submit" ng-click="saveWishList(bands)" ng-disabled="newEventForm.$invalid" class="btn btn-primary">Submit</button>
+      <a href="/" class="btn"></a>Cancel</button>
+      <button type="submit" ng-click="loginWithFacebook()" class="btn btn-primary">Facebook Login</button>
+      <button type="submit" ng-click="signOut()" class="btn btn-primary">signOut</button>
     </div>
+
+    <div ng-if="bands[0].name" class="col-xs-6 col-centered" >
+      <div style="height: 500px; width: 300px; border: 1px solid black; margin: 0 122px 0 122px">
+        <div style="height: 150px; width: 300px; border: 1px solid black;">
+          <p>Wishlist User Name</p>
+          <img src="../img/images.png" style="width:100px;height:100px; margin: 0 100px 0 100px; border-radius: 100%;" />
+        </div>
+        <div ng-if="bands" ng-repeat="band in bands">
+          <p>{{ band.name}}</p>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <button type="button" ng-click="addBand()" class="btn btn-secondary">Add Band</button>
-  <br>
-  <br>
-  <button type="submit" ng-click="saveWishList(bands)" ng-disabled="newEventForm.$invalid" class="btn btn-primary">Submit</button>
-  <a href="/" class="btn">Cancel</button>
 </form>
+
 
 <div ng-if="false">
   <p>In order to make a wish list you need to sign in</p>
   <button type="submit" ng-click="loginWithFacebook()" class="btn btn-primary">Facebook Login</button>
 </div>
-
-<button type="submit" ng-click="loginWithFacebook()" class="btn btn-primary">Facebook Login</button>
-<button type="submit" ng-click="signOut()" class="btn btn-primary">signOut</button>
