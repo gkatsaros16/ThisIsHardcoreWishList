@@ -1,5 +1,5 @@
-<form ng-if="true" name="newWishListForm">
-  <div ng-repeat="band in wishList" class="form-group row">
+<form name="newWishListForm">
+  <div ng-repeat="band in bands" class="form-group row">
     <label for="band_{{ $index + 1 }}" class="col-xs-2 col-form-label">Band {{$index + 1}}</label>
     <div class="col-xs-12">
       <input class="form-control" type="text" required placeholder="Enter band" ng-model="band.name" id="band_{{ $index + 1}}">
@@ -8,7 +8,7 @@
   <button type="button" ng-click="addBand()" class="btn btn-secondary">Add Band</button>
   <br>
   <br>
-  <button type="submit" ng-click="saveWishList(wishList)" class="btn btn-primary">Submit</button>
+  <button type="submit" ng-click="saveWishList(bands)" ng-disabled="newEventForm.$invalid" class="btn btn-primary">Submit</button>
   <a href="/" class="btn">Cancel</button>
 </form>
 

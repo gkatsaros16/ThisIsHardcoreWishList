@@ -1,8 +1,8 @@
 'use strict';
 
 tihcwlApp.controller('CreateWishListController',
-  function CreateWishListController($scope, firebasePost) {
-    $scope.wishList = [{}];
+  function CreateWishListController($scope, firebasePost, firebaseAuth) {
+    $scope.bands = [{}];
 
     $scope.saveWishList = function(wishList){
       if ($scope.newWishListForm.$valid) {
@@ -15,17 +15,12 @@ tihcwlApp.controller('CreateWishListController',
       $scope.bands.push({})
     };
 
-    $scope.logedIn = false
-    if (firebase.auth().currentUser) {
-      $scope.logedIn = true
-    }
-
     $scope.loginWithFacebook = function() {
-      FirebaseAuth.loginWithFacebook();
+      firebaseAuth.loginWithFacebook();
     }
 
     $scope.signOut = function() {
-      FirebaseAuth.signOut();
+      firebaseAuth.signOut();
     }
   }
 )
