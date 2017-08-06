@@ -15,10 +15,10 @@ tihcwlApp.factory('firebasePost', function(){
         .then(function(snapshot) {
           var show =  snapshot.val()
         });
-      //add logic that compares bandArray to enteries in the DB, if match inc by 1.
-      database.ref('bandList').update(
-        bandArray.map(band => ({ name: band.name}))
-      )
+      //add logic that compares bandArray to enteries in the DB, if match inc by 1,
+      bandArray.forEach(function(band) {
+        database.ref('bandList').push(band.name)
+      });
     }
   }
 })
