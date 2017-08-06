@@ -1,14 +1,14 @@
-tihcwlApp.factory('firebasePost', function(){
+tihcwlApp.factory('firebasePost', function($firebaseArray, firebaseGet){
   var database = firebase.database();
 
-  function updateBandCounter(postRef, uid) {
-    postRef.transaction(function(post) {
-      if (post) {
-        post.starCount++;
-      }
-      return post;
-    });
-  }
+  // function updateBandCounter(postRef, uid) {
+  //   postRef.transaction(function(post) {
+  //     if (post) {
+  //       post.starCount++;
+  //     }
+  //     return post;
+  //   });
+  // }
 
   return {
     writeWishList: function(bandArray) {
@@ -18,7 +18,24 @@ tihcwlApp.factory('firebasePost', function(){
       )
     },
     writeBandList: function(bandArray) {
-      //add logic that compares bandArray to enteries in the DB, if match inc by 1, if no match push and give count 1.
+      let bandListRef = firebaseGet.getBandList();
+      let bandList = $firebaseArray(bandListRef);
+
+      bandList.$loaded()
+        .then(function(){
+          bandList.forEach(function(firebaseBand) {
+            bandArray.forEach(function(bandInBandArray) {
+              // //logic to increment band count by 1
+              // if (bandInBandArray.name === firebaseBand.name) {
+              //   bandListRef.update(function(firebaseBand){
+              //     firebaseBand.count++;
+              //   })
+              // }
+            })
+          })
+        });
+
+      // if no match push and give count 1.
       bandArray.forEach(function(band) {
         database.ref('bandList').push({
           name: band.name,
@@ -28,6 +45,15 @@ tihcwlApp.factory('firebasePost', function(){
     }
   }
 })
+
+// var databaseRef = firebase.database().ref('bandList')
+//
+// databaseRef.transaction(function(searches) {
+//   if (searches) {
+//     searches = searches + 1;
+//   }
+//   return searches;
+// });
 
 // bandArray.forEach(function(band){
 //   database.ref('bandLists').forEach(function(firebaseBand){
