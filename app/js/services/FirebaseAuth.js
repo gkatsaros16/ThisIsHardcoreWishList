@@ -1,18 +1,18 @@
 tihcwlApp.factory('firebaseAuth', function(){
-  // var userId = firebase.auth().currentUser.uid;
-  return {
-    // isLoggedIn: function($scope) {
-    //   firebase.auth().onAuthStateChanged(function(user) {
-    //       if (user) {
-    //           $scope.user.authenticated =true;
-    //           $scope.$apply()
-    //       } else {
-    //           $scope.user.authenticated =false;
-    //           $scope.$apply()
-    //       }
-    //   });
-    // },
+  var _user = null;
 
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      _user = user;
+    } else {
+      _user = null;
+    }
+  });
+
+  return {
+    isAuthenticated: function () {
+      return !!_user;
+    },
     loginWithFacebook: function() {
       var provider = new firebase.auth.FacebookAuthProvider();
 
@@ -20,7 +20,7 @@ tihcwlApp.factory('firebaseAuth', function(){
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
         // The signed-in user info.
-        var user = result.user;
+       user = result.user;
 
 
       }).catch(function(error) {
