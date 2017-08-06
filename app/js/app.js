@@ -4,8 +4,15 @@ var tihcwlApp = angular.module('tihcwlApp', ['ngResource', 'ngRoute', 'firebase'
 
     // Universal resolves
     var rootResolve = {
-      auth: function (Auth) {
-        return Auth.$waitForSignIn();
+      auth: function ($firebaseAuth, $q, Auth ) {
+        var dfd = $q.defer();
+        $firebaseAuth().$waitForSignIn().then(function( _authedUser ) {
+            Auth.setUser( _authedUser );
+            dfd.resolve();
+        }).catch( function () {
+          dfd.reject();
+        });
+        return dfd.promise;
       }
     }, 
     modWhen = {
@@ -37,10 +44,25 @@ var tihcwlApp = angular.module('tihcwlApp', ['ngResource', 'ngRoute', 'firebase'
     {
       redirectTo: '/TIHCWL'
     });
+  }).controller( 'AppController', function ( $rootScope, Auth ) {
+    $rootScope.Auth = Auth;
   });
 
-tihcwlApp.factory('Auth', ['$firebaseAuth',
-  function($firebaseAuth) {
-    return $firebaseAuth();
+tihcwlApp.service('Auth', ['$firebaseAuth',
+  function() {
+
+    var svc = {};
+    svc.currentUser = null;
+    svc.getUser = function () { 
+      return svc.currentUser;
+    }; 
+    svc.setUser = function ( user ) {
+      svc.currentUser = user;
+    };
+    svc.isAuthenticated = function() {
+      return !!this.getUser()
+    };
+      
+    return svc;
   }
 ]);

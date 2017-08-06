@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
   </head>
-  <body>
+  <body ng-controller="AppController">
     <div class="container">
       <nav class="navbar navbar-inverse bg-inverse">
         <a class="navbar-brand" href="#/">TIHCWL</a>
@@ -21,7 +21,7 @@
           <div class="fb-login-button" style="float: right;" data-width="50" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
           <div class="navbar-nav nav-item-vertical-spacing">
             <a class="nav-item nav-link active nav-item-horizontal-spacing" href="#/wishLists">Wish Lists<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link nav-item-horizontal-spacing" href="#/createWishList">Your Wish List</a>
+            <a class="nav-item nav-link nav-item-horizontal-spacing" href="#/createWishList">Your Wish List ( {{ Auth.currentUser.displayName }} )</a>
           </div>
         </div>
       </nav>
