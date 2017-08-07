@@ -1,4 +1,4 @@
-<form name="newWishListForm">
+<form ng-if="Auth.isAuthenticated()" name="newWishListForm">
   <div class="row">
     <div class="col-xs-6">
       <div ng-repeat="band in bands" class="form-group">
@@ -14,8 +14,6 @@
       <br>
       <button type="submit" ng-click="saveWishList(bands)" ng-disabled="newEventForm.$invalid" class="btn btn-primary">Submit</button>
       <a href="/" class="btn"></a>Cancel</button>
-      <button type="button" ng-click="loginWithFacebook()" class="btn btn-primary">Facebook Login</button>
-      <button type="button" ng-click="signOut()" class="btn btn-primary">signOut</button>
     </div>
 
     <div ng-if="bands[0].name" class="col-xs-6 col-centered" >
@@ -34,7 +32,7 @@
 </form>
 
 
-<div ng-if="false">
+<div ng-if="!Auth.isAuthenticated()">
   <p>In order to make a wish list you need to sign in</p>
   <button type="submit" ng-click="loginWithFacebook()" class="btn btn-primary">Facebook Login</button>
 </div>

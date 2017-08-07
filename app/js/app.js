@@ -14,7 +14,7 @@ var tihcwlApp = angular.module('tihcwlApp', ['ngResource', 'ngRoute', 'firebase'
         });
         return dfd.promise;
       }
-    }, 
+    },
     modWhen = {
       when: function(path, route) {
         route.resolve = (route.resolve) ? route.resolve : {};
@@ -44,8 +44,16 @@ var tihcwlApp = angular.module('tihcwlApp', ['ngResource', 'ngRoute', 'firebase'
     {
       redirectTo: '/TIHCWL'
     });
-  }).controller( 'AppController', function ( $rootScope, Auth ) {
+  }).controller( 'AppController', function ( $rootScope, Auth, firebaseAuth) {
     $rootScope.Auth = Auth;
+
+    $rootScope.loginWithFacebook = function() {
+      firebaseAuth.loginWithFacebook();
+    }
+
+    $rootScope.signOut = function() {
+      firebaseAuth.signOut();
+    }
   });
 
 tihcwlApp.service('Auth', ['$firebaseAuth',
@@ -53,16 +61,16 @@ tihcwlApp.service('Auth', ['$firebaseAuth',
 
     var svc = {};
     svc.currentUser = null;
-    svc.getUser = function () { 
+    svc.getUser = function () {
       return svc.currentUser;
-    }; 
+    };
     svc.setUser = function ( user ) {
       svc.currentUser = user;
     };
     svc.isAuthenticated = function() {
       return !!this.getUser()
     };
-      
+
     return svc;
   }
 ]);

@@ -18,10 +18,12 @@
       <nav class="navbar navbar-inverse bg-inverse">
         <a class="navbar-brand" href="#/">TIHCWL</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="fb-login-button" style="float: right;" data-width="50" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
-          <div class="navbar-nav nav-item-vertical-spacing">
-            <a class="nav-item nav-link active nav-item-horizontal-spacing" href="#/wishLists">Wish Lists<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link nav-item-horizontal-spacing" href="#/createWishList">Your Wish List ( {{ Auth.currentUser.displayName }} )</a>
+          <button type="button" ng-if="!Auth.isAuthenticated()" ng-click="loginWithFacebook()" style="float: right;" class="btn btn-primary">Login</button>
+          <button type="button" ng-if="Auth.isAuthenticated()" ng-click="signOut()" style="float: right;" class="btn btn-primary">Log Out</button>
+
+          <div class="">
+            <a class="" href="#/wishLists">Wish Lists<span class="sr-only">(current)</span></a>
+            <a class="" href="#/createWishList">Your Wish List ( {{ Auth.currentUser.displayName }} )</a>
           </div>
         </div>
       </nav>
