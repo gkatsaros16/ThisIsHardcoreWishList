@@ -7,8 +7,8 @@ tihcwlApp.controller('CreateWishListController',
     //firebaseAuth.isLoggedIn($scope);
     // $scope.userHasWishList = firebaseGet.getWishListById(firebase.auth().currentUser.uid)
 
-    $scope.saveWishList = function(wishList){
-      if ($scope.newWishListForm.$valid) {
+    $scope.saveWishList = function(wishList, newWishListForm){
+      if (newWishListForm.$valid) {
         firebasePost.writeWishList(wishList)
         firebasePost.writeBandList(wishList)
       }

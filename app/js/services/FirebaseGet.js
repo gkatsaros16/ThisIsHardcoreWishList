@@ -9,6 +9,9 @@ tihcwlApp.factory('firebaseGet', function(){
     },
     getBandList: function() {
       return firebase.database().ref().child("bandList");
+    },
+    getBandListbyId: function(bandId) {
+      return firebase.database().ref().child("bandList").child(bandId);
     }
   }
 })

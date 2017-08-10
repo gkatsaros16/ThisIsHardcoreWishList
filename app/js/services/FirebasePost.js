@@ -1,15 +1,6 @@
 tihcwlApp.factory('firebasePost', function($firebaseArray, firebaseGet){
   var database = firebase.database();
-
-  // function updateBandCounter(postRef, uid) {
-  //   postRef.transaction(function(post) {
-  //     if (post) {
-  //       post.starCount++;
-  //     }
-  //     return post;
-  //   });
-  // }
-
+  
   return {
     writeWishList: function(bandArray) {
       let userId = firebase.auth().currentUser.uid;
@@ -20,53 +11,41 @@ tihcwlApp.factory('firebasePost', function($firebaseArray, firebaseGet){
     writeBandList: function(bandArray) {
       let bandListRef = firebaseGet.getBandList();
       let bandList = $firebaseArray(bandListRef);
+      let firebaseBandListNames = []
+      let bandArrayListNames = []
 
-      bandList.$loaded()
-        .then(function(){
-          bandList.forEach(function(firebaseBand) {
-            bandArray.forEach(function(bandInBandArray) {
-              // //logic to increment band count by 1
-              // if (bandInBandArray.name === firebaseBand.name) {
-              //   bandListRef.update(function(firebaseBand){
-              //     firebaseBand.count++;
-              //   })
-              // }
-            })
-          })
-        });
-
-      // if no match push and give count 1.
       bandArray.forEach(function(band) {
-        database.ref('bandList').push({
-          name: band.name,
-          count: 1
+        bandArrayListNames.push(band.name)
+      })
+
+      bandList.$loaded().then(function() {
+        bandList.forEach(function(bandFromFirebase){
+
         })
-      });
+      })
+
+      bandList.$loaded().then(function(){
+        bandList.forEach(function(bandFromFirebase) {
+          firebaseBandListNames.push(bandFromFirebase.name)
+
+          if (bandArrayListNames.includes(bandFromFirebase.name)){
+            bandFromFirebase.count++
+            firebaseGet.getBandListbyId(bandFromFirebase.$id).transaction(function(bandFromFirebase){
+              bandFromFirebase.count++
+              return bandFromFirebase
+            })
+          }
+        })
+
+        bandArray.forEach(function(bandFromArray) {
+          if (!firebaseBandListNames.includes(bandFromArray.name)){
+            database.ref('bandList').push({
+              name: bandFromArray.name,
+              count: 1
+            })
+          }
+        })
+      })
     }
   }
 })
-
-// var databaseRef = firebase.database().ref('bandList')
-//
-// databaseRef.transaction(function(searches) {
-//   if (searches) {
-//     searches = searches + 1;
-//   }
-//   return searches;
-// });
-
-// bandArray.forEach(function(band){
-//   database.ref('bandLists').forEach(function(firebaseBand){
-//     if (band.name === firebaseBand.name) {
-//       database.ref('bandLists').transaction(function(firebaseBand) {
-//         firebaseBand.count++;
-//         return firebaseBand;
-//       });
-//     } else {
-//       database.ref('bandList').push({
-//         name: band.name,
-//         count: 1
-//       })
-//     }
-//   })
-// })
