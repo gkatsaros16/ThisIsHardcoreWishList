@@ -1,6 +1,7 @@
 <form ng-if="Auth.isAuthenticated()" name="newWishListForm">
   <div class="row">
     <div class="col-xs-6">
+
       <div ng-repeat="band in bands" class="form-group">
         <label for="band_{{ $index + 1 }}" class="col-form-label">
           <p>Band {{$index + 1}}:</p>

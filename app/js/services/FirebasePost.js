@@ -1,11 +1,13 @@
-tihcwlApp.factory('firebasePost', function($firebaseArray, firebaseGet){
+tihcwlApp.factory('firebasePost', function($firebaseArray, firebaseGet, Auth){
   var database = firebase.database();
-  
+
   return {
     writeWishList: function(bandArray) {
       let userId = firebase.auth().currentUser.uid;
       database.ref('wishLists/' + userId).update(
-        bandArray.map(band => ({ name: band.name}))
+          bandArray.map(band => ({
+          name: band.name
+        }))
       )
     },
     writeBandList: function(bandArray) {
@@ -16,12 +18,6 @@ tihcwlApp.factory('firebasePost', function($firebaseArray, firebaseGet){
 
       bandArray.forEach(function(band) {
         bandArrayListNames.push(band.name)
-      })
-
-      bandList.$loaded().then(function() {
-        bandList.forEach(function(bandFromFirebase){
-
-        })
       })
 
       bandList.$loaded().then(function(){
